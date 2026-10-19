@@ -16,11 +16,7 @@ public class ComplexPlane implements IComplexPlane{
     }
 
     /**
-     *
-     * @param row The row of the pixel in the image.
-     * @param column The column of the pixel in the image.
-     *
-     * @return The complex number (z = a + ib) corresponding to the pixel at the given row and column.
+     * {@inheritDoc}
      */
     @Override
     public IComplex asComplex(int row, int column) {
