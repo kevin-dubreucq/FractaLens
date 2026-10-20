@@ -28,7 +28,7 @@ public class GradientPalette implements IColorPalette{
     @Override
     public Color getColor(int iterations, int maxIterations) {
         if (iterations >= maxIterations) {
-            return Color.BLACK;
+            return color2;
         }
         double p = (double) iterations / maxIterations;
         int r = (int) (color1.getRed() + p * (color2.getRed() - color1.getRed()));
