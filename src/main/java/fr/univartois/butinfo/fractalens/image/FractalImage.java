@@ -22,10 +22,11 @@ public class FractalImage implements IFractalImage {
     /**
      * Constructs a new FractalImage with the specified dimensions.
      *
-     * @param image The underlying image on which the fractal is drawn.
+     * @param width The width of the image to create, in pixels.
+     * @param height The height of the image to create, in pixels.
      */
-    public FractalImage(BufferedImage image) {
-        this.image = image;
+    public FractalImage(int width, int height) {
+        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     }
 
     /**
