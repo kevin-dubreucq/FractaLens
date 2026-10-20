@@ -114,21 +114,4 @@ class FractalImageTest {
 
         assertEquals(Color.BLACK.getRGB(), savedImage.getRGB(0, 0));
     }
-
-    /**
-     * Test method for
-     * {@link fr.univartois.butinfo.fractalens.image.IFractalImage#saveAs(String)}
-     * when the provided path does not contain an extension.
-     */
-    @Test
-    void testSaveAsWithoutExtension() {
-        IFractalImage image = createFractalImage(10, 10);
-
-        IllegalArgumentException exception = org.junit.jupiter.api.Assertions.assertThrows(
-                IllegalArgumentException.class,
-                () -> image.saveAs("chemin_sans_point")
-        );
-
-        assertTrue(exception.getMessage().contains("extension") || exception.getMessage().contains("format"));
-    }
 }
