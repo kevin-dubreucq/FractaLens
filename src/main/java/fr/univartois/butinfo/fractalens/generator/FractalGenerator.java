@@ -6,10 +6,10 @@ import java.util.function.BiFunction;
 
 import fr.univartois.butinfo.fractalens.complex.IComplex;
 import fr.univartois.butinfo.fractalens.complex.IComplexPlane;
-import fr.univartois.butinfo.fractalens.complex.IComplexSequence;
+import fr.univartois.butinfo.fractalens.complex.sequence.IComplexSequence;
 import fr.univartois.butinfo.fractalens.image.FractalImage;
 import fr.univartois.butinfo.fractalens.image.IFractalImage;
-import fr.univartois.butinfo.fractalens.palette.IColorPalette;
+import fr.univartois.butinfo.fractalens.color.IColorPalette;
 
 /**
  * The FractalGenerator class implements IFractalGenerator to generate fractal images
