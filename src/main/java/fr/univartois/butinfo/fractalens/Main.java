@@ -1,5 +1,6 @@
 package fr.univartois.butinfo.fractalens;
 
+import fr.univartois.butinfo.fractalens.color.*;
 import fr.univartois.butinfo.fractalens.complex.Complex;
 import fr.univartois.butinfo.fractalens.complex.ComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.IComplexPlane;
@@ -8,10 +9,6 @@ import fr.univartois.butinfo.fractalens.complex.TranslatedComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.sequence.JuliaSequence;
 import fr.univartois.butinfo.fractalens.generator.FractalGenerator;
 import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
-import fr.univartois.butinfo.fractalens.color.GrayscalePalette;
-import fr.univartois.butinfo.fractalens.color.IColorPalette;
-import fr.univartois.butinfo.fractalens.color.GradientPalette;
-import fr.univartois.butinfo.fractalens.color.InvertedColorPalette;
 
 import java.awt.Color;
 
@@ -81,5 +78,29 @@ public class Main {
 
         generator2.generateImage();
         generator2.saveImage();
+
+        // --- DEMO 3
+        int width3 = 800;
+        int height3 = 600;
+        int maxIterations3 = 100;
+        double zoom3 = 0.004;
+
+        IComplexPlane plane3 = new ComplexPlane(height3, width3);
+        IComplexPlane zoomedPlane3 = new ScaledComplexPlane(plane3, zoom3);
+
+        IColorPalette palette3 = new FixedColorPalette();
+
+        IFractalGenerator generator3 = new FractalGenerator(
+                width3,
+                height3,
+                zoomedPlane3,
+                (z0, maxIter) -> new JuliaSequence(z0, new Complex(-0.4, 0.6), maxIter),
+                palette3,
+                maxIterations3,
+                "julia_fractal_fixed_color.png"
+        );
+
+        generator3.generateImage();
+        generator3.saveImage();
     }
 }
