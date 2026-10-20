@@ -15,7 +15,7 @@ public class FixedColorPalette implements IColorPalette {
      * An array of 100 predefined discrete colors used for the fixed palette.
      */
     private static final Color[] COLORS = {
-            new Color(0, 0, 0),       // 1 - Noir absolu initial
+            new Color(0, 0, 0),
             new Color(1, 1, 2),
             new Color(2, 2, 4),
             new Color(3, 3, 6),
@@ -24,7 +24,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(6, 6, 12),
             new Color(7, 7, 14),
             new Color(8, 8, 16),
-            new Color(9, 9, 18),      // 10
+            new Color(9, 9, 18),
             new Color(10, 10, 20),
             new Color(10, 10, 25),
             new Color(10, 11, 30),
@@ -34,7 +34,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(10, 15, 55),
             new Color(10, 16, 62),
             new Color(10, 18, 70),
-            new Color(10, 20, 78),    // 20 - Passage au Bleu
+            new Color(10, 20, 78),
             new Color(10, 25, 92),
             new Color(10, 30, 106),
             new Color(10, 35, 120),
@@ -44,7 +44,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(10, 58, 176),
             new Color(10, 64, 190),
             new Color(10, 70, 204),
-            new Color(15, 80, 198),   // 30 - Passage au Bleu Cyan
+            new Color(15, 80, 198),
             new Color(15, 90, 192),
             new Color(15, 100, 186),
             new Color(15, 110, 180),
@@ -54,7 +54,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(15, 142, 156),
             new Color(15, 150, 150),
             new Color(20, 155, 137),
-            new Color(24, 160, 125),  // 40 - Passage au Vert
+            new Color(24, 160, 125),
             new Color(28, 165, 112),
             new Color(32, 170, 100),
             new Color(36, 175, 88),
@@ -64,13 +64,13 @@ public class FixedColorPalette implements IColorPalette {
             new Color(40, 198, 45),
             new Color(48, 202, 40),
             new Color(72, 206, 40),
-            new Color(96, 210, 40),   // 50
+            new Color(96, 210, 40),
             new Color(120, 214, 40),
             new Color(144, 218, 40),
             new Color(168, 222, 40),
             new Color(192, 226, 40),
             new Color(216, 230, 40),
-            new Color(240, 234, 40),  // 60 - Passage au Jaune
+            new Color(240, 234, 40),
             new Color(240, 228, 39),
             new Color(240, 222, 38),
             new Color(240, 210, 34),
@@ -79,7 +79,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(240, 192, 30),
             new Color(240, 186, 28),
             new Color(240, 180, 27),
-            new Color(240, 171, 26),  // 70 - Passage à l'Orange
+            new Color(240, 171, 26),
             new Color(240, 162, 24),
             new Color(240, 153, 23),
             new Color(240, 144, 22),
@@ -89,7 +89,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(240, 108, 18),
             new Color(240, 99, 16),
             new Color(240, 90, 15),
-            new Color(240, 83, 16),   // 80 - Passage au Rouge
+            new Color(240, 83, 16),
             new Color(240, 77, 18),
             new Color(240, 70, 20),
             new Color(237, 63, 22),
@@ -99,7 +99,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(223, 43, 28),
             new Color(220, 40, 30),
             new Color(210, 35, 30),
-            new Color(200, 30, 40),   // 90
+            new Color(200, 30, 40),
             new Color(190, 28, 50),
             new Color(180, 25, 60),
             new Color(170, 22, 70),
@@ -109,7 +109,7 @@ public class FixedColorPalette implements IColorPalette {
             new Color(135, 20, 97),
             new Color(132, 20, 98),
             new Color(131, 20, 99),
-            new Color(130, 20, 100)   // 100 - Violet pourpre final
+            new Color(130, 20, 100)
     };
 
     /**
