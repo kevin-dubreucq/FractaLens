@@ -20,12 +20,12 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package fr.univartois.butinfo.fractalens.complex.sequence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import fr.univartois.butinfo.fractalens.complex.Complex;
 import org.junit.jupiter.api.Test;
 
 import fr.univartois.butinfo.fractalens.complex.IComplex;
@@ -39,7 +39,6 @@ import fr.univartois.butinfo.fractalens.complex.IComplex;
  * @version 0.1.0
  */
 class ComplexSequenceTest {
-
     /**
      * Creates a new complex number.
      *
@@ -49,8 +48,7 @@ class ComplexSequenceTest {
      * @return The created complex number.
      */
     private static IComplex createComplex(double realPart, double imaginaryPart) {
-        // TODO Create here an instance of your class implementing IComplex.
-        return null;
+        return new Complex(realPart, imaginaryPart);
     }
 
     /**
@@ -65,9 +63,8 @@ class ComplexSequenceTest {
      */
     private static IComplexSequence createJuliaSequence(
             IComplex first, IComplex constant, int nbTerms) {
-        // TODO Create here an instance of your class implementing IComplexSequence for
         // Julia's sequence.
-        return null;
+        return new JuliaSequence(first, constant, nbTerms);
     }
 
     /**
@@ -131,5 +128,4 @@ class ComplexSequenceTest {
 
         assertTrue(nbIterations < nbTerms);
     }
-
 }
