@@ -1,5 +1,6 @@
 package fr.univartois.butinfo.fractalens.complex.sequence;
 
+import fr.univartois.butinfo.fractalens.complex.Complex;
 import fr.univartois.butinfo.fractalens.complex.IComplex;
 
 import java.util.Iterator;
@@ -54,5 +55,57 @@ public class ComplexSequence implements IComplexSequence{
     @Override
     public Iterator<IComplex> iterator() {
         return new ComplexIterator(first, this, nbTerms);
+    }
+
+    /**
+     * Creates a new Mandelbrot sequence.
+     * This sequence is defined by the recurrence relation m_n(z) = m_{n-1}(z)^2 + z.
+     *
+     * @param first The initial complex number (z).
+     * @param nbTerms The maximum number of terms to compute.
+     * @return The created Mandelbrot sequence.
+     */
+    public static IComplexSequence createMandelbrot(Complex first, int nbTerms) {
+        return createMandelbrotGeneric(first,nbTerms,2);
+    }
+
+    /**
+     * Creates a new generalized Mandelbrot (Multibrot) sequence.
+     * This sequence is defined by the recurrence relation m_n(z) = m_{n-1}(z)^p + z.
+     *
+     * @param first The initial complex number (z).
+     * @param nbTerms The maximum number of terms to compute.
+     * @param p The power applied to the previous term.
+     * @return The created generalized Mandelbrot sequence.
+     */
+    public static IComplexSequence createMandelbrotGeneric(Complex first, int nbTerms, int p) {
+        return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.pow(p).add(initial));
+    }
+
+    /**
+     * Creates a new Tricorn (or Mandelbar) sequence.
+     * This sequence is defined by the recurrence relation t_n(z) = conjugate(t_{n-1}(z))^2 + c.
+     *
+     * @param first The initial complex number.
+     * @param nbTerms The maximum number of terms to compute.
+     * @param constant The complex constant (c) added at each iteration.
+     * @return The created Tricorn sequence.
+     */
+    public static IComplexSequence createTricorn(Complex first, int nbTerms, IComplex constant) {
+        return createTricornGeneric(first,nbTerms,constant,2);
+    }
+
+    /**
+     * Creates a new generalized Tricorn sequence.
+     * This sequence is defined by the recurrence relation t_n(z) = conjugate(t_{n-1}(z))^p + c.
+     *
+     * @param first The initial complex number.
+     * @param nbTerms The maximum number of terms to compute.
+     * @param constant The complex constant (c) added at each iteration.
+     * @param p The power applied to the conjugated previous term.
+     * @return The created generalized Tricorn sequence.
+     */
+    public static IComplexSequence createTricornGeneric(Complex first, int nbTerms, IComplex constant, int p) {
+        return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.conjugate().pow(p).add(constant));
     }
 }
