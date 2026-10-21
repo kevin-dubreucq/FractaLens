@@ -107,5 +107,27 @@ public class ComplexSequence implements IComplexSequence{
      */
     public static IComplexSequence createTricornGeneric(Complex first, int nbTerms, IComplex constant, int p) {
         return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.conjugate().pow(p).add(constant));
+
+    /**
+     * Creates a new generic Burning Ship sequence.
+     *
+     * @param z0 The initial complex number.
+     * @param maxIter The maximum number of terms.
+     * @param constant The constant complex number.
+     * @param p The power to which the absolute values are raised.
+     */
+    public static IComplexSequence genericBurningShip (IComplex z0, int maxIter, IComplex constant, int p){
+        return new ComplexSequence(z0, maxIter, (previous) -> (new Complex(Math.abs(previous.getRealPart()), 0).add(new Complex(0, Math.abs(previous.getImaginaryPart())))).pow(p).add(constant));
+    }
+
+    /**
+     * Creates a new Burning Ship sequence.
+     *
+     * @param z0 The initial complex number.
+     * @param maxIter The maximum number of terms.
+     * @param constant The constant complex number.
+     */
+    public static IComplexSequence burningShip (IComplex z0, int maxIter, IComplex constant){
+        return genericBurningShip(z0, maxIter, constant, 2);
     }
 }
