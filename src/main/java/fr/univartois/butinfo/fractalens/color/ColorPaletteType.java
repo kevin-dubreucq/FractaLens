@@ -7,7 +7,7 @@ import java.awt.*;
  * available for fractal rendering. Each type is associated with a concrete
  * implementation of the {@link IColorPalette} interface.
  *
- * @author University of Artois
+ * @author Kévin DUBREUCQ
  * @version 1.0
  * @see IColorPalette
  */
