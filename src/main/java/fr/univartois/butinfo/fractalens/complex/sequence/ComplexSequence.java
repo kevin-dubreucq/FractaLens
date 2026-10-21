@@ -107,6 +107,7 @@ public class ComplexSequence implements IComplexSequence{
      */
     public static IComplexSequence createTricornGeneric(Complex first, int nbTerms, IComplex constant, int p) {
         return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.conjugate().pow(p).add(constant));
+    }
 
     /**
      * Creates a new generic Burning Ship sequence.
