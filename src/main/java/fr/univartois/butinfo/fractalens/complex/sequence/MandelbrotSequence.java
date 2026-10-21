@@ -1,7 +1,7 @@
 package fr.univartois.butinfo.fractalens.complex.sequence;
 
 import fr.univartois.butinfo.fractalens.complex.IComplex;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.util.Iterator;
 
@@ -48,7 +48,7 @@ public class MandelbrotSequence implements IComplexSequence{
      * {@inheritDoc}
      */
     @Override
-    public @NotNull Iterator<IComplex> iterator() {
+    public Iterator<IComplex> iterator() {
         return new ComplexIterator(first,this,nbTerms);
     }
 }
