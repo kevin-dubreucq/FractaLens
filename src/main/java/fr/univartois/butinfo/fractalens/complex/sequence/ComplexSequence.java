@@ -118,7 +118,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param p The power to which the absolute values are raised.
      */
     public static IComplexSequence genericBurningShip (IComplex z0, int maxIter, IComplex constant, int p){
-        return new ComplexSequence(z0, maxIter, (previous) -> (new Complex(Math.abs(previous.getRealPart()), 0).add(new Complex(0, Math.abs(previous.getImaginaryPart())))).pow(p).add(constant));
+        return new ComplexSequence(z0, maxIter, (previous, initial) -> (new Complex(Math.abs(previous.getRealPart()), 0).add(new Complex(0, Math.abs(previous.getImaginaryPart())))).pow(p).add(constant));
     }
 
     /**
