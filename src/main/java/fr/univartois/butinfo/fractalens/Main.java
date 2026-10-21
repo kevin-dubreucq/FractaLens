@@ -7,8 +7,10 @@ import fr.univartois.butinfo.fractalens.complex.IComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.ScaledComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.TranslatedComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequence;
+import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequenceType;
 import fr.univartois.butinfo.fractalens.complex.sequence.JuliaSequence;
 import fr.univartois.butinfo.fractalens.generator.FractalGenerator;
+import fr.univartois.butinfo.fractalens.generator.FractalGeneratorBuilder;
 import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
 
 import java.awt.Color;
@@ -29,7 +31,7 @@ public class Main {
                 .zoom(0.001)
                 .focus(0.1, 0.6)
                 .maxIterations(250)
-                .sequence(ComplexSequenceType.JULIA_DEFAULT)
+                .sequence(ComplexSequenceType.JULIA)
                 .palette(ColorPaletteType.GRADIENT_YELLOW_RED)
                 .outputPath("julia_builder_1.png")
                 .build();
