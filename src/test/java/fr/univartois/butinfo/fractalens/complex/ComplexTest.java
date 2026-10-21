@@ -259,6 +259,23 @@ class ComplexTest {
         assertEquals(createComplex(2, -2), z.divide(i));
     }
 
+    @Test
+    void testPow() {
+        IComplex c = new Complex(1.0, 1.0);
+        IComplex result = c.pow(2);
+
+        assertEquals(0.0, result.getRealPart(), 1e-9);
+        assertEquals(2.0, result.getImaginaryPart(), 1e-9);
+
+        IComplex powZero = c.pow(0);
+        assertEquals(1.0, powZero.getRealPart(), 1e-9);
+        assertEquals(0.0, powZero.getImaginaryPart(), 1e-9);
+
+        IComplex powOne = c.pow(1);
+        assertEquals(1.0, powOne.getRealPart(), 1e-9);
+        assertEquals(1.0, powOne.getImaginaryPart(), 1e-9);
+    }
+
     /**
      * Test method for
      * {@link fr.univartois.butinfo.fractalens.complex.IComplex#hashCode()}.
