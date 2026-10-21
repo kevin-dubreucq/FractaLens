@@ -117,6 +117,18 @@ public class Complex implements IComplex {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IComplex pow(int p) {
+        IComplex result = new Complex(1.0, 0.0);
+        for (int i = 0; i < p; i++) {
+            result = result.multiply(this);
+        }
+        return result;
+    }
+
+    /**
      * Indicates whether some other object is "equal to" this complex number.
      *
      * @option obj The reference object with which to compare.
