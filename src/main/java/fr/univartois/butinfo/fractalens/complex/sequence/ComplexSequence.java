@@ -122,13 +122,17 @@ public class ComplexSequence implements IComplexSequence{
     }
 
     /**
-     * Creates a new Burning Ship sequence.
+     * Creates a new Burning Ship sequence (Mandelbrot style).
      *
-     * @param z0 The initial complex number.
-     * @param maxIter The maximum number of terms.
-     * @param constant The constant complex number.
+     * @param first The initial complex number (z0 / pixel).
+     * @param nbTerms The maximum number of terms.
+     * @return The created Burning Ship sequence.
      */
-    public static IComplexSequence burningShip (IComplex z0, int maxIter, IComplex constant){
-        return genericBurningShip(z0, maxIter, constant, 2);
+    public static IComplexSequence createBurningShip(Complex first, int nbTerms) {
+        return new ComplexSequence(first, nbTerms, (previous, initial) ->
+                new Complex(Math.abs(previous.getRealPart()), Math.abs(previous.getImaginaryPart()))
+                        .pow(2)
+                        .add(initial)
+        );
     }
 }
