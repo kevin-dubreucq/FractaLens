@@ -20,7 +20,6 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
  * USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package fr.univartois.butinfo.fractalens.complex.sequence;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,7 +39,6 @@ import fr.univartois.butinfo.fractalens.complex.IComplex;
  * @version 0.1.0
  */
 class ComplexSequenceTest {
-
     /**
      * Creates a new complex number.
      *
@@ -130,5 +128,4 @@ class ComplexSequenceTest {
 
         assertTrue(nbIterations < nbTerms);
     }
-
 }
