@@ -5,10 +5,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
+/**
+ * The MandelbrotSequence class implements {@link IComplexSequence}
+ * for the Mandelbrot set.
+ *
+ * @author Beauvais Maxence
+ * @version 0.1.0
+ */
 public class MandelbrotSequence implements IComplexSequence{
 
     /**
-     * The first term of the sequence.
+     * The first term of the sequence (corresponds to the point z in the complex plane).
      */
     private final IComplex first;
 
@@ -18,7 +25,7 @@ public class MandelbrotSequence implements IComplexSequence{
     private final int nbTerms;
 
     /**
-     * Creates a new Julia sequence.
+     * Creates a new Mandelbrot sequence.
      *
      * @param first The initial complex number.
      * @param nbTerms The maximum number of terms.
