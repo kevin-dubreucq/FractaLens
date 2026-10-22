@@ -10,6 +10,42 @@ public class Main {
 
     public static void main(String[] args) {
 
+        IFractalGenerator mandelbrotImage = new FractalGeneratorBuilder()
+                .dimensions(600, 800)
+                .sequence(ComplexSequenceType.MANDELBROT)
+                .palette(ColorPaletteType.GRADIENT_BLUE_BLACK)
+                .focus(-0.75, 0.0)
+                .scale(0.001)
+                .maxIterations(250)
+                .outputPath("mandelbrot_statique.png")
+                .build();
+
+        mandelbrotImage.saveImage();
+
+        IFractalGenerator juliaImage = new FractalGeneratorBuilder()
+                .dimensions(800, 800)
+                .sequence(ComplexSequenceType.JULIA)
+                .palette(ColorPaletteType.GRADIENT_YELLOW_RED)
+                .focus(0.1, 0.6)
+                .scale(0.001)
+                .maxIterations(250)
+                .outputPath("julia_statique.png")
+                .build();
+
+        juliaImage.saveImage();
+
+        IFractalGenerator burningShipImage = new FractalGeneratorBuilder()
+                .dimensions(800, 800)
+                .sequence(ComplexSequenceType.BURNING_SHIP)
+                .palette(ColorPaletteType.GRADIENT_BLACK_YELLOW)
+                .focus(-1.755, -0.03)
+                .scale(0.0001)
+                .maxIterations(64)
+                .outputPath("burningship_statique.png")
+                .build();
+
+        burningShipImage.saveImage();
+
         IFractalGenerator mandelbrotZoom = new FractalGeneratorBuilder()
                 .dimensions(400, 400)
                 .sequence(ComplexSequenceType.MANDELBROT)
