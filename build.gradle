@@ -24,6 +24,8 @@ repositories {
 
 // The dependencies of the project.
 dependencies {
+    implementation 'com.madgag:animated-gif-lib:1.4'
+
     // Dependencies for unit tests.
     testImplementation libs.junit.jupiter
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
