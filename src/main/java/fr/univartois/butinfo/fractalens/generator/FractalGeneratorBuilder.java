@@ -8,17 +8,20 @@ import fr.univartois.butinfo.fractalens.complex.IComplex;
 import fr.univartois.butinfo.fractalens.complex.IComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.ScaledComplexPlane;
 import fr.univartois.butinfo.fractalens.complex.TranslatedComplexPlane;
+import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequence;
 import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequenceType;
 import fr.univartois.butinfo.fractalens.complex.sequence.IComplexSequence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiFunction;
 
 /**
- * The FractalGeneratorBuilder class allows configuring and instantiating a FractalGenerator
- * in a fluent way, without any default values.
+ * The FractalGeneratorBuilder class allows configuring and instantiating
+ * a FractalGenerator or AnimatedFractalGenerator in a fluent way.
  *
  * @author Lucas Vanstraceele
- * @version 1.0
+ * @version 1.3
  */
 public class FractalGeneratorBuilder {
 
@@ -32,166 +35,139 @@ public class FractalGeneratorBuilder {
     private IColorPalette colorPalette;
     private String outputPath;
 
-    /**
-     * Sets the width of the image to generate.
-     *
-     * @param width The width in pixels.
-     * @return This builder instance.
-     */
+    // Animation configuration parameters
+    private int frameCount;
+    private double zoomFactor;
+    private int frameDelayMs;
+    private boolean isRotationAnimation;
+    private IComplex initialJuliaC;
+
     public FractalGeneratorBuilder width(int width) {
         this.width = width;
         return this;
     }
 
-    /**
-     * Sets the height of the image to generate.
-     *
-     * @param height The height in pixels.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder height(int height) {
         this.height = height;
         return this;
     }
 
-    /**
-     * Sets both the width and height of the image to generate.
-     *
-     * @param width The width in pixels.
-     * @param height The height in pixels.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder dimensions(int width, int height) {
         this.width = width;
         this.height = height;
         return this;
     }
 
-    /**
-     * Sets the scale factor for the complex plane.
-     *
-     * @param scale The scale value.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder scale(double scale) {
         this.scale = scale;
         return this;
     }
 
-    /**
-     * Sets the zoom factor for the complex plane.
-     *
-     * @param zoom The zoom value.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder zoom(double zoom) {
         this.scale = zoom;
         return this;
     }
 
-    /**
-     * Sets the focus coordinates for the center of the image.
-     *
-     * @param focusX The real part of the center.
-     * @param focusY The imaginary part of the center.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder focus(double focusX, double focusY) {
         this.focusX = focusX;
         this.focusY = focusY;
         return this;
     }
 
-    /**
-     * Sets the focus complex number for the center of the image.
-     *
-     * @param focus The complex number representing the center.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder focus(IComplex focus) {
         this.focusX = focus.getRealPart();
         this.focusY = focus.getImaginaryPart();
         return this;
     }
 
-    /**
-     * Sets the maximum number of iterations allowed for the sequences.
-     *
-     * @param maxIterations The maximum number of iterations.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder maxIterations(int maxIterations) {
         this.maxIterations = maxIterations;
         return this;
     }
 
-    /**
-     * Sets the sequence factory using a BiFunction.
-     *
-     * @param sequenceFactory The sequence factory.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder sequence(BiFunction<IComplex, Integer, IComplexSequence> sequenceFactory) {
         this.sequenceFactory = sequenceFactory;
         return this;
     }
 
-    /**
-     * Sets the sequence using a predefined complex sequence type enumeration.
-     *
-     * @param sequenceType The sequence type enum.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder sequence(ComplexSequenceType sequenceType) {
         this.sequenceFactory = sequenceType.getFactory();
         return this;
     }
 
-    /**
-     * Sets the color palette strategy.
-     *
-     * @param colorPalette The color palette.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder palette(IColorPalette colorPalette) {
         this.colorPalette = colorPalette;
         return this;
     }
 
-    /**
-     * Sets the color palette using a predefined color palette type enumeration.
-     *
-     * @param paletteType The color palette type enum.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder palette(ColorPaletteType paletteType) {
         this.colorPalette = paletteType.getPalette();
         return this;
     }
 
-    /**
-     * Sets the output file path where the image will be saved.
-     *
-     * @param outputPath The file path string.
-     * @return This builder instance.
-     */
     public FractalGeneratorBuilder outputPath(String outputPath) {
         this.outputPath = outputPath;
         return this;
     }
 
     /**
-     * Builds and returns a configured instance of FractalGenerator.
+     * Configures a rotation animation for Julia set.
      *
-     * @return The configured FractalGenerator.
+     * @param frameCount Number of frames in the GIF.
+     * @param initialC Initial complex constant c.
+     * @param frameDelayMs Delay between frames in milliseconds.
+     * @return This builder instance.
      */
-    public FractalGenerator build() {
-        IComplexPlane plane = new ComplexPlane(height, width);
+    public FractalGeneratorBuilder rotationAnimation(int frameCount, IComplex initialC, int frameDelayMs) {
+        this.frameCount = frameCount;
+        this.initialJuliaC = initialC;
+        this.frameDelayMs = frameDelayMs;
+        this.isRotationAnimation = true;
+        return this;
+    }
 
+    /**
+     * Builds and returns a single FractalGenerator or an AnimatedFractalGenerator composite.
+     *
+     * @return The configured IFractalGenerator.
+     */
+    public IFractalGenerator build() {
+        if (frameCount > 0) {
+            List<IFractalGenerator> generators = new ArrayList<>();
+
+            if (isRotationAnimation) {
+                double angleStep = 2 * Math.PI / frameCount;
+                for (int i = 0; i < frameCount; i++) {
+                    double theta = i * angleStep;
+                    IComplex rotationFactor = new Complex(Math.cos(theta), Math.sin(theta));
+                    IComplex rotatedC = initialJuliaC.multiply(rotationFactor);
+
+                    BiFunction<IComplex, Integer, IComplexSequence> rotatedJuliaFactory =
+                            (z0, maxIter) -> ComplexSequence.createJuliaGeneric(z0, maxIter, rotatedC);
+
+                    IComplexPlane plane = new ComplexPlane(height, width);
+                    if (scale != 0.0) {
+                        plane = new ScaledComplexPlane(plane, scale);
+                    }
+                    if (focusX != 0.0 || focusY != 0.0) {
+                        plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
+                    }
+
+                    generators.add(new FractalGenerator(width, height, plane, rotatedJuliaFactory, colorPalette, maxIterations, outputPath));
+                }
+            }
+
+
+            }
+
+            return new AnimatedFractalGenerator(generators, outputPath, frameDelayMs);
+        }
+
+        // Single image generator
+        IComplexPlane plane = new ComplexPlane(height, width);
         if (scale != 0.0) {
             plane = new ScaledComplexPlane(plane, scale);
         }
-
         if (focusX != 0.0 || focusY != 0.0) {
             plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
         }
