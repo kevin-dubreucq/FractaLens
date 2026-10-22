@@ -61,4 +61,13 @@ public class FractalImage implements IFractalImage {
         File file = new File(path);
         ImageIO.write(image, path.substring(path.lastIndexOf(".") + 1), file);
     }
+
+    /**
+     * Gives the underlying BufferedImage.
+     *
+     * @return The BufferedImage.
+     */
+    public BufferedImage getImage() {
+        return image;
+    }
 }
