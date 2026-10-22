@@ -111,6 +111,21 @@ public class FractalGeneratorBuilder {
     }
 
     /**
+
+     Configures a progressive zoom animation.*
+     @param frameCount Number of frames in the GIF.
+     @param zoomFactor Multiplicative factor for scale per frame.
+     @param frameDelayMs Delay between frames in milliseconds.
+     @return This builder instance.*/
+    public FractalGeneratorBuilder zoomAnimation(int frameCount, double zoomFactor, int frameDelayMs) {
+        this.frameCount = frameCount;
+        this.zoomFactor = zoomFactor;
+        this.frameDelayMs = frameDelayMs;
+        this.isRotationAnimation = false;
+        return this;
+    }
+
+    /**
      * Configures a rotation animation for Julia set.
      *
      * @param frameCount Number of frames in the GIF.
@@ -156,8 +171,20 @@ public class FractalGeneratorBuilder {
                     generators.add(new FractalGenerator(width, height, plane, rotatedJuliaFactory, colorPalette, maxIterations, outputPath));
                 }
             }
+            else {
+                double currentScale = scale;
+                for (int i = 0; i < frameCount; i++) {
+                    IComplexPlane plane = new ComplexPlane(height, width);
+                    if (currentScale != 0.0) {
+                        plane = new ScaledComplexPlane(plane, currentScale);
+                    }
+                    if (focusX != 0.0 || focusY != 0.0) {
+                        plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
+                    }
 
-
+                    generators.add(new FractalGenerator(width, height, plane, sequenceFactory, colorPalette, maxIterations, outputPath));
+                    currentScale *= zoomFactor;
+                }
             }
 
             return new AnimatedFractalGenerator(generators, outputPath, frameDelayMs);
