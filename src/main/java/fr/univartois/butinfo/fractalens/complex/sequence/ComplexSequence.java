@@ -65,7 +65,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param nbTerms The maximum number of terms to compute.
      * @return The created Mandelbrot sequence.
      */
-    public static IComplexSequence createMandelbrot(Complex first, int nbTerms) {
+    public static IComplexSequence createMandelbrot(IComplex first, int nbTerms) {
         return createMandelbrotGeneric(first,nbTerms,2);
     }
 
@@ -78,7 +78,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param p The power applied to the previous term.
      * @return The created generalized Mandelbrot sequence.
      */
-    public static IComplexSequence createMandelbrotGeneric(Complex first, int nbTerms, int p) {
+    public static IComplexSequence createMandelbrotGeneric(IComplex first, int nbTerms, int p) {
         return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.pow(p).add(initial));
     }
 
@@ -91,7 +91,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param constant The complex constant (c) added at each iteration.
      * @return The created Tricorn sequence.
      */
-    public static IComplexSequence createTricorn(Complex first, int nbTerms, IComplex constant) {
+    public static IComplexSequence createTricorn(IComplex first, int nbTerms, IComplex constant) {
         return createTricornGeneric(first,nbTerms,constant,2);
     }
 
@@ -105,7 +105,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param p The power applied to the conjugated previous term.
      * @return The created generalized Tricorn sequence.
      */
-    public static IComplexSequence createTricornGeneric(Complex first, int nbTerms, IComplex constant, int p) {
+    public static IComplexSequence createTricornGeneric(IComplex first, int nbTerms, IComplex constant, int p) {
         return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.conjugate().pow(p).add(constant));
     }
 
@@ -128,11 +128,15 @@ public class ComplexSequence implements IComplexSequence{
      * @param nbTerms The maximum number of terms.
      * @return The created Burning Ship sequence.
      */
-    public static IComplexSequence createBurningShip(Complex first, int nbTerms) {
+    public static IComplexSequence createBurningShip(IComplex first, int nbTerms) {
         return new ComplexSequence(first, nbTerms, (previous, initial) ->
                 new Complex(Math.abs(previous.getRealPart()), Math.abs(previous.getImaginaryPart()))
                         .pow(2)
                         .add(initial)
         );
+    }
+
+    public static IComplexSequence createJuliaGeneric(IComplex z0, int maxIter, IComplex constant) {
+        return new ComplexSequence(z0, maxIter, (previous, initial) -> previous.multiply(previous).add(constant));
     }
 }
