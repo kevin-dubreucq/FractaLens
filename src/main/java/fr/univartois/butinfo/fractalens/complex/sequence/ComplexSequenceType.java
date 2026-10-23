@@ -10,9 +10,9 @@ public enum ComplexSequenceType {
 
     JULIA((z0, maxIter) -> ComplexSequence.createJuliaGeneric(z0, maxIter, new Complex(-0.4, 0.6))),
 
-    MANDELBROT((z0, maxIter) -> ComplexSequence.createMandelbrot(z0, maxIter)),
+    MANDELBROT(ComplexSequence::createMandelbrot),
 
-    BURNING_SHIP((z0, maxIter) -> ComplexSequence.createBurningShip(z0, maxIter)),
+    BURNING_SHIP(ComplexSequence::createBurningShip),
 
     MULTIBROT_3((z0, maxIter) -> ComplexSequence.createMandelbrotGeneric(z0, maxIter, 3)),
 
