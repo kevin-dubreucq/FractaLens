@@ -2,8 +2,8 @@ package fr.univartois.butinfo.fractalens.complex;
 
 public class ComplexPlane implements IComplexPlane{
 
-    private int height; // Amount of pixels in each row of the image
-    private int width; // Amount of pixels in each column of the image
+    private final int height; // Amount of pixels in each row of the image
+    private final int width; // Amount of pixels in each column of the image
 
     /**
      *
