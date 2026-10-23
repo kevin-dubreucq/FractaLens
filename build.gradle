@@ -25,6 +25,7 @@ repositories {
 // The dependencies of the project.
 dependencies {
     implementation 'com.madgag:animated-gif-lib:1.4'
+    implementation 'info.picocli:picocli:4.7.6'
 
     // Dependencies for unit tests.
     testImplementation libs.junit.jupiter
