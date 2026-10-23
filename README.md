@@ -295,6 +295,7 @@ FractalCli ..> FractalGeneratorBuilder
 
 ## Feature list
 
+<<<<<<< README.md
 | Features                                               | Design Pattern(s) (?)                          | Author(s)                                  |
 |--------------------------------------------------------|------------------------------------------------|--------------------------------------------|
 | Complex number                                         | Immutable object                               | Lucas Vanstraceele                         |
@@ -411,6 +412,7 @@ Displaying the help of the command:
 - In a `zoom` animation, the option `-s` gives the scale of the first frame; a `--zoom-factor` below `1` zooms in, above `1` zooms out.
 - Large images with many iterations can take a while to compute: start with a small size (for instance `-w 200 -h 200`).
 - An invalid value (for instance an unknown fractal name) is reported by the command, with the list of the accepted values.
+
 
 ## Team
 
