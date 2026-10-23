@@ -18,6 +18,8 @@ public enum ComplexSequenceType {
 
     TRICORN((z0, maxIter) -> ComplexSequence.createTricorn(z0, maxIter, new Complex(-0.4, 0.6))),
 
+    AETHERHELIX((z0, maxIter) -> new AetherHelixSequence(z0, maxIter)),
+
     CUSTOM_SEQUENCE((z0, maxIter) -> new ComplexSequence(z0, maxIter,
             (prev, initial) -> prev.pow(3).subtract(prev).add(new Complex(-0.2, 0.4))
     ));
