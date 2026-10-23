@@ -8,6 +8,10 @@ import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
 
 public class Main {
 
+    private Main(){
+        throw new IllegalStateException("Main class should not be instantiated");
+    }
+
     public static void main() {
 
         IFractalGenerator mandelbrotImage = new FractalGeneratorBuilder()
