@@ -13,16 +13,21 @@ import picocli.CommandLine.Option;
  * The FractalCli class implements the command-line interface for FractaLens
  * using Picocli, managing all required parameters for generating images or animations.
  *
- * @author Your Team
+ * @author Lucas Vanstraceele
  * @version 1.1
  */
 @Command(
         name = "fractalens",
-        mixinStandardHelpOptions = true,
         version = "FractaLens 1.1",
         description = "Generates fractal images and animations from mathematical complex sequences."
 )
 public class FractalCli implements Runnable {
+
+    @Option(names = {"--help"}, usageHelp = true, description = "Display this help message and exit.")
+    private boolean helpRequested;
+
+    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Display the version and exit.")
+    private boolean versionRequested;
 
     @Option(names = {"-f", "--fractal-name"}, description = "The name of the fractal to generate (e.g., MANDELBROT, JULIA).")
     private ComplexSequenceType fractalName = ComplexSequenceType.MANDELBROT;
