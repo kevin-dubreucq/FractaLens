@@ -15,7 +15,7 @@ public class FixedColorPalette6 implements IColorPalette {
      * An array of 100 predefined discrete colors transitioning through Violet, Pink, Blue, and Cyan.
      */
     private static final Color[] COLORS = {
-            // --- Phase 1 : Violet profond vers Violet électrique (1 à 25) ---
+
             new Color(40, 10, 60),
             new Color(45, 11, 68),
             new Color(50, 12, 76),
@@ -42,7 +42,7 @@ public class FixedColorPalette6 implements IColorPalette {
             new Color(215, 80, 240),
             new Color(222, 87, 235),
 
-            // --- Phase 2 : Violet clair vers Rose éclatant (26 à 50) ---
+
             new Color(228, 93, 230),
             new Color(234, 96, 227),
             new Color(240, 100, 225),
@@ -69,7 +69,7 @@ public class FixedColorPalette6 implements IColorPalette {
             new Color(130, 50, 250),
             new Color(115, 45, 248),
 
-            // --- Phase 3 : Rose vers Bleu intense (51 à 75) ---
+
             new Color(102, 42, 246),
             new Color(90, 40, 245),
             new Color(75, 41, 243),
@@ -96,7 +96,7 @@ public class FixedColorPalette6 implements IColorPalette {
             new Color(25, 215, 255),
             new Color(32, 220, 255),
 
-            // --- Phase 4 : Bleu électrique vers Cyan lumineux (76 à 100) ---
+
             new Color(40, 225, 255),
             new Color(48, 228, 255),
             new Color(58, 232, 255),
@@ -121,7 +121,7 @@ public class FixedColorPalette6 implements IColorPalette {
             new Color(12, 60, 115),
             new Color(8, 48, 95),
             new Color(6, 35, 75),
-            new Color(30, 8, 45)       // Bouclage final vers le violet sombre
+            new Color(30, 8, 45)
     };
 
     /**
@@ -130,7 +130,7 @@ public class FixedColorPalette6 implements IColorPalette {
     @Override
     public Color getColor(int iterations, int maxIterations) {
         if (iterations >= maxIterations) {
-            return new Color(30, 8, 45); // Violet très sombre pour l'intérieur / non-convergence
+            return new Color(30, 8, 45);
         }
 
         int index = iterations % COLORS.length;

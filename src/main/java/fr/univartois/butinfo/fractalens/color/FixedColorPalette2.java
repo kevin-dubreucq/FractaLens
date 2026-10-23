@@ -65,20 +65,12 @@ public class FixedColorPalette2 implements IColorPalette {
     @Override
     public Color getColor(int iterations, int maxIterations) {
         if (iterations >= maxIterations) {
-            return Color.BLACK; // Garder le noir pour l'intérieur ou la non-convergence
+            return Color.BLACK;
         }
 
-        // --- MODIFICATION ---
-        // Au lieu de commencer à l'index 0 pour 1 itération,
-        // on ajoute un décalage (offset) pour accéder directement
-        // aux couleurs plus vives (vert/jaune/rouge) plus rapidement.
-        // Par exemple, on commence à l'index 15.
+
         int offset = 15;
         int index = (iterations + offset) % COLORS.length;
-
-        // Optionnel : si iterations est très petit, on peut aussi
-        // booster l'index pour s'assurer de ne jamais utiliser les premières couleurs.
-        // int index = Math.max(offset, iterations) % COLORS.length;
 
         return COLORS[index];
     }

@@ -15,7 +15,7 @@ public class FixedColorPalette4 implements IColorPalette {
      * An array of predefined discrete colors transitioning through Violet, Pink, Blue, and Cyan.
      */
     private static final Color[] COLORS = {
-            // --- Phase 1 : Violet profond vers Violet électrique ---
+
             new Color(40, 10, 60),
             new Color(60, 15, 90),
             new Color(85, 20, 130),
@@ -23,7 +23,7 @@ public class FixedColorPalette4 implements IColorPalette {
             new Color(135, 30, 210),
             new Color(160, 40, 240),
 
-            // --- Phase 2 : Violet clair vers Rose éclatant ---
+
             new Color(190, 60, 245),
             new Color(215, 80, 240),
             new Color(240, 100, 225),
@@ -31,7 +31,7 @@ public class FixedColorPalette4 implements IColorPalette {
             new Color(255, 150, 200),
             new Color(255, 175, 210),
 
-            // --- Phase 3 : Rose vers Bleu intense ---
+
             new Color(240, 150, 225),
             new Color(210, 110, 240),
             new Color(170, 75, 250),
@@ -41,7 +41,7 @@ public class FixedColorPalette4 implements IColorPalette {
             new Color(25, 60, 240),
             new Color(10, 85, 245),
 
-            // --- Phase 4 : Bleu électrique vers Cyan lumineux ---
+
             new Color(0, 115, 250),
             new Color(0, 145, 252),
             new Color(0, 175, 255),
@@ -58,7 +58,7 @@ public class FixedColorPalette4 implements IColorPalette {
     @Override
     public Color getColor(int iterations, int maxIterations) {
         if (iterations >= maxIterations) {
-            return new Color(30, 8, 45); // Violet très sombre pour l'intérieur / non-convergence
+            return new Color(30, 8, 45);
         }
 
         int index = iterations % COLORS.length;

@@ -35,13 +35,13 @@ public class AetherHelixSequence implements IComplexSequence {
 
     @Override
     public IComplex computeNext(IComplex previous) {
-        // Formule : prev^3 - (prev * first) + first
+
         return previous.pow(3).subtract(previous.multiply(first)).add(first);
     }
 
     @Override
     public Iterator<IComplex> iterator() {
-        // Pour une approche de type trajectoire (Buddhabrot/Flamme), on initialise le premier terme à c
+
         return new ComplexIterator(first, this, nbTerms);
     }
 }
