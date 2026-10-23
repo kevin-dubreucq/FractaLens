@@ -8,7 +8,7 @@ import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main() {
 
         IFractalGenerator mandelbrotImage = new FractalGeneratorBuilder()
                 .dimensions(600, 800)
