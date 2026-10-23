@@ -26,12 +26,12 @@ import fr.univartois.butinfo.fractalens.color.IColorPalette;
 class FractalGeneratorTest {
 
     /**
-     * Crée un nouveau générateur de fractale préconfiguré pour les tests.
+     * Create a new FractalGenerator for tests.
      *
-     * @param width La largeur de l'image.
-     * @param height La hauteur de l'image.
-     * @param palette La palette de couleurs.
-     * @return Le générateur de fractale créé.
+     * @param width The width of the image.
+     * @param height The height of the image.
+     * @param palette The color palette.
+     * @return The FractalGenerator created.
      */
     private static IFractalGenerator createGenerator(int width, int height, IColorPalette palette) {
         IComplexPlane plane = new ComplexPlane(height, width);
@@ -63,8 +63,8 @@ class FractalGeneratorTest {
 
         Color color = generator.computePixelColor(0, 0);
 
-        assertNotNull(color, "La couleur calculée ne doit pas être nulle.");
-        assertEquals(Color.RED, color, "La couleur doit correspondre à celle fournie par la palette.");
+        assertNotNull(color, "The calculated color must not be null");
+        assertEquals(Color.RED, color, "The color must correspond to the one provided by the palette.");
     }
 
     /**
@@ -80,8 +80,8 @@ class FractalGeneratorTest {
 
         IFractalImage image = generator.generateImage();
 
-        assertNotNull(image, "L'image générée ne doit pas être nulle.");
-        assertEquals(width, image.getWidth(), "La largeur de l'image doit être correcte.");
-        assertEquals(height, image.getHeight(), "La hauteur de l'image doit être correcte.");
+        assertNotNull(image, "The generated image should not be null.");
+        assertEquals(width, image.getWidth(), "The image width must be correct");
+        assertEquals(height, image.getHeight(), "The image height must be correct");
     }
 }
