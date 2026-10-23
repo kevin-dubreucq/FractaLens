@@ -20,6 +20,7 @@ import picocli.CommandLine;
 /**
  * The FractalCliTest class tests the command-line interface implemented by {@link FractalCli}.
  *
+ * @author Maxence Beauvais
  * @version 1.0
  */
 class FractalCliTest {
