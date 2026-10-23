@@ -151,40 +151,10 @@ public class FractalGeneratorBuilder {
             List<IFractalGenerator> generators = new ArrayList<>();
 
             if (isRotationAnimation) {
-                double angleStep = 2 * Math.PI / frameCount;
-                for (int i = 0; i < frameCount; i++) {
-                    double theta = i * angleStep;
-                    IComplex rotationFactor = new Complex(Math.cos(theta), Math.sin(theta));
-                    IComplex rotatedC = initialJuliaC.multiply(rotationFactor);
-
-                    BiFunction<IComplex, Integer, IComplexSequence> rotatedJuliaFactory =
-                            (z0, maxIter) -> ComplexSequence.createJuliaGeneric(z0, maxIter, rotatedC);
-
-                    IComplexPlane plane = new ComplexPlane(height, width);
-                    if (scale != 0.0) {
-                        plane = new ScaledComplexPlane(plane, scale);
-                    }
-                    if (focusX != 0.0 || focusY != 0.0) {
-                        plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
-                    }
-
-                    generators.add(new FractalGenerator(width, height, plane, rotatedJuliaFactory, colorPalette, maxIterations, outputPath));
-                }
+                rotation(generators);
             }
             else {
-                double currentScale = scale;
-                for (int i = 0; i < frameCount; i++) {
-                    IComplexPlane plane = new ComplexPlane(height, width);
-                    if (currentScale != 0.0) {
-                        plane = new ScaledComplexPlane(plane, currentScale);
-                    }
-                    if (focusX != 0.0 || focusY != 0.0) {
-                        plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
-                    }
-
-                    generators.add(new FractalGenerator(width, height, plane, sequenceFactory, colorPalette, maxIterations, outputPath));
-                    currentScale *= zoomFactor;
-                }
+                zoom(generators);
             }
 
             return new AnimatedFractalGenerator(generators, outputPath, frameDelayMs);
@@ -200,5 +170,43 @@ public class FractalGeneratorBuilder {
         }
 
         return new FractalGenerator(width, height, plane, sequenceFactory, colorPalette, maxIterations, outputPath);
+    }
+
+    private void zoom(List<IFractalGenerator> generators) {
+        double currentScale = scale;
+        for (int i = 0; i < frameCount; i++) {
+            IComplexPlane plane = new ComplexPlane(height, width);
+            if (currentScale != 0.0) {
+                plane = new ScaledComplexPlane(plane, currentScale);
+            }
+            if (focusX != 0.0 || focusY != 0.0) {
+                plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
+            }
+
+            generators.add(new FractalGenerator(width, height, plane, sequenceFactory, colorPalette, maxIterations, outputPath));
+            currentScale *= zoomFactor;
+        }
+    }
+
+    private void rotation(List<IFractalGenerator> generators) {
+        double angleStep = 2 * Math.PI / frameCount;
+        for (int i = 0; i < frameCount; i++) {
+            double theta = i * angleStep;
+            IComplex rotationFactor = new Complex(Math.cos(theta), Math.sin(theta));
+            IComplex rotatedC = initialJuliaC.multiply(rotationFactor);
+
+            BiFunction<IComplex, Integer, IComplexSequence> rotatedJuliaFactory =
+                    (z0, maxIter) -> ComplexSequence.createJuliaGeneric(z0, maxIter, rotatedC);
+
+            IComplexPlane plane = new ComplexPlane(height, width);
+            if (scale != 0.0) {
+                plane = new ScaledComplexPlane(plane, scale);
+            }
+            if (focusX != 0.0 || focusY != 0.0) {
+                plane = new TranslatedComplexPlane(plane, new Complex(focusX, focusY));
+            }
+
+            generators.add(new FractalGenerator(width, height, plane, rotatedJuliaFactory, colorPalette, maxIterations, outputPath));
+        }
     }
 }
