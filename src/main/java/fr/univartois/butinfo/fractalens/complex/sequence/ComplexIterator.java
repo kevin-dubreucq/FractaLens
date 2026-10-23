@@ -2,6 +2,7 @@ package fr.univartois.butinfo.fractalens.complex.sequence;
 
 import fr.univartois.butinfo.fractalens.complex.IComplex;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * The ComplexIterator class allows iterating step by step through the terms
@@ -93,6 +94,9 @@ public class ComplexIterator implements Iterator<IComplex> {
      */
     @Override
     public IComplex next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
         IComplex temp = this.currentNumber;
         this.currentNumber = this.sequence.computeNext(currentNumber);
         compteurIteration++;
