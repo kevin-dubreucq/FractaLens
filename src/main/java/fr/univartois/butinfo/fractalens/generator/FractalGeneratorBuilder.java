@@ -42,69 +42,149 @@ public class FractalGeneratorBuilder {
     private boolean isRotationAnimation;
     private IComplex initialJuliaC;
 
+    /**
+     * Sets the width of the generated fractal image.
+     *
+     * @param width The width of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder width(int width) {
         this.width = width;
         return this;
     }
 
+    /**
+     * Sets the height of the generated fractal image.
+     *
+     * @param height The height of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder height(int height) {
         this.height = height;
         return this;
     }
 
+    /**
+     * Sets the dimensions of the generated fractal image.
+     *
+     * @param width The width of the generated fractal image.
+     * @param height The height of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder dimensions(int width, int height) {
         this.width = width;
         this.height = height;
         return this;
     }
 
+    /**
+     * Sets the scale of the generated fractal image.
+     *
+     * @param scale The scale of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder scale(double scale) {
         this.scale = scale;
         return this;
     }
 
+    /**
+     * Sets the zoom factor of the generated fractal image.
+     *
+     * @param zoom The zoom factor of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder zoom(double zoom) {
         this.scale = zoom;
         return this;
     }
 
+    /**
+     * Sets the focus point of the generated fractal image.
+     *
+     * @param focusX The x-coordinate of the focus point.
+     * @param focusY The y-coordinate of the focus point.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder focus(double focusX, double focusY) {
         this.focusX = focusX;
         this.focusY = focusY;
         return this;
     }
 
+    /**
+     * Sets the focus point of the generated fractal image.
+     *
+     * @param focus The focus point of the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder focus(IComplex focus) {
         this.focusX = focus.getRealPart();
         this.focusY = focus.getImaginaryPart();
         return this;
     }
 
+    /**
+     * Sets the maximum number of iterations for the generated fractal image.
+     *
+     * @param maxIterations The maximum number of iterations for the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder maxIterations(int maxIterations) {
         this.maxIterations = maxIterations;
         return this;
     }
 
+    /**
+     * Sets the sequence factory for generating the fractal image.
+     *
+     * @param sequenceFactory The sequence factory for generating the fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder sequence(BiFunction<IComplex, Integer, IComplexSequence> sequenceFactory) {
         this.sequenceFactory = sequenceFactory;
         return this;
     }
 
+    /**
+     * Sets the sequence type for generating the fractal image.
+     *
+     * @param sequenceType The sequence type for generating the fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder sequence(ComplexSequenceType sequenceType) {
         this.sequenceFactory = sequenceType.getFactory();
         return this;
     }
 
+    /**
+     * Sets the color palette for generating the fractal image.
+     *
+     * @param colorPalette The color palette for generating the fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder palette(IColorPalette colorPalette) {
         this.colorPalette = colorPalette;
         return this;
     }
 
+    /**
+     * Sets the color palette type for generating the fractal image.
+     *
+     * @param paletteType The color palette type for generating the fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder palette(ColorPaletteType paletteType) {
         this.colorPalette = paletteType.getPalette();
         return this;
     }
 
+    /**
+     * Sets the output path for saving the generated fractal image.
+     *
+     * @param outputPath The output path for saving the generated fractal image.
+     * @return The FractalGeneratorBuilder instance for method chaining.
+     */
     public FractalGeneratorBuilder outputPath(String outputPath) {
         this.outputPath = outputPath;
         return this;
@@ -172,6 +252,11 @@ public class FractalGeneratorBuilder {
         return new FractalGenerator(width, height, plane, sequenceFactory, colorPalette, maxIterations, outputPath);
     }
 
+    /**
+     * Performs zooming on the fractal generator.
+     *
+     * @param generators The list of fractal generators.
+     */
     private void zoom(List<IFractalGenerator> generators) {
         double currentScale = scale;
         for (int i = 0; i < frameCount; i++) {
@@ -188,6 +273,11 @@ public class FractalGeneratorBuilder {
         }
     }
 
+    /**
+     * Performs rotation on the fractal generator.
+     *
+     * @param generators The list of fractal generators.
+     */
     private void rotation(List<IFractalGenerator> generators) {
         double angleStep = 2 * Math.PI / frameCount;
         for (int i = 0; i < frameCount; i++) {

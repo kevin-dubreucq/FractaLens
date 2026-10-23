@@ -6,8 +6,14 @@ import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequenceType;
 import fr.univartois.butinfo.fractalens.generator.FractalGeneratorBuilder;
 import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
 
+/**
+ * The {@code Main} class is the entry point of the application.
+ */
 public class Main {
 
+    /**
+     * Private constructor to prevent instantiation of the {@code Main} class.
+     */
     private Main(){
         throw new IllegalStateException("Main class should not be instantiated");
     }

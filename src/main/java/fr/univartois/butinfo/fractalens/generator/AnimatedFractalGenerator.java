@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Generates an animated fractal GIF.
+ */
 public class AnimatedFractalGenerator implements IFractalGenerator {
 
     private final List<IFractalGenerator> generators;

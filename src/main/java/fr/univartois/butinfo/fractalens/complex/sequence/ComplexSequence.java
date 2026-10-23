@@ -6,6 +6,9 @@ import fr.univartois.butinfo.fractalens.complex.IComplex;
 import java.util.Iterator;
 import java.util.function.BinaryOperator;
 
+/**
+ * Represents a sequence of complex numbers.
+ */
 public class ComplexSequence implements IComplexSequence{
 
     /**
@@ -103,7 +106,7 @@ public class ComplexSequence implements IComplexSequence{
      * @param nbTerms The maximum number of terms to compute.
      * @param constant The complex constant (c) added at each iteration.
      * @param p The power applied to the conjugated previous term.
-     * @return The created generalized Tricorn sequence.
+     * @return The generated generalized Tricorn sequence.
      */
     public static IComplexSequence createTricornGeneric(IComplex first, int nbTerms, IComplex constant, int p) {
         return new ComplexSequence(first, nbTerms, (previous, initial) -> previous.conjugate().pow(p).add(constant));
@@ -136,6 +139,14 @@ public class ComplexSequence implements IComplexSequence{
         );
     }
 
+    /**
+     * Creates a new generic Julia sequence.
+     *
+     * @param z0 The initial complex number.
+     * @param maxIter The maximum number of terms.
+     * @param constant The constant complex number.
+     * @return The generated generic Julia sequence.
+     */
     public static IComplexSequence createJuliaGeneric(IComplex z0, int maxIter, IComplex constant) {
         return new ComplexSequence(z0, maxIter, (previous, initial) -> previous.multiply(previous).add(constant));
     }

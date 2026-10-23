@@ -2,13 +2,13 @@ package fr.univartois.butinfo.fractalens.complex;
 
 public class ComplexPlane implements IComplexPlane{
 
-    private final int height; // Amount of pixels in each row of the image
-    private final int width; // Amount of pixels in each column of the image
+    private final int height; // Number of pixels in each row of the image
+    private final int width; // Number of pixels in each column of the image
 
     /**
      *
-     * @param height Amount of pixels in each row of the image
-     * @param width Amount of pixels in each column of the image
+     * @param height Number of pixels in each row of the image
+     * @param width Number of pixels in each column of the image
      */
     public ComplexPlane(int height, int width) {
         this.height = height;
