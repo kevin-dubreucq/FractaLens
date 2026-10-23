@@ -1,69 +1,75 @@
 package fr.univartois.butinfo.fractalens;
 
-import fr.univartois.butinfo.fractalens.color.*;
+import fr.univartois.butinfo.fractalens.color.ColorPaletteType;
 import fr.univartois.butinfo.fractalens.complex.Complex;
-import fr.univartois.butinfo.fractalens.complex.ComplexPlane;
-import fr.univartois.butinfo.fractalens.complex.IComplexPlane;
-import fr.univartois.butinfo.fractalens.complex.ScaledComplexPlane;
-import fr.univartois.butinfo.fractalens.complex.TranslatedComplexPlane;
-import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequence;
 import fr.univartois.butinfo.fractalens.complex.sequence.ComplexSequenceType;
-import fr.univartois.butinfo.fractalens.complex.sequence.JuliaSequence;
-import fr.univartois.butinfo.fractalens.generator.FractalGenerator;
 import fr.univartois.butinfo.fractalens.generator.FractalGeneratorBuilder;
 import fr.univartois.butinfo.fractalens.generator.IFractalGenerator;
 
-import java.awt.Color;
-
-/**
- * La classe Main permet d'exécuter l'application et de générer des images de fractales
- * pour le Sprint 3 et le Sprint 4 avec les paramètres ajustés.
- *
- * @author Lucas Vanstraceele
- * @version 4.2
- */
 public class Main {
 
     public static void main(String[] args) {
 
-        FractalGenerator generator1 = new FractalGeneratorBuilder()
-                .dimensions(800, 800)
-                .zoom(0.001)
-                .focus(0.1, 0.6)
-                .maxIterations(250)
-                .sequence(ComplexSequenceType.JULIA)
-                .palette(ColorPaletteType.GRADIENT_YELLOW_RED)
-                .outputPath("julia_builder_1.png")
-                .build();
-
-        generator1.generateImage();
-        generator1.saveImage();
-
-        FractalGenerator generator2 = new FractalGeneratorBuilder()
-                .dimensions(800, 600)
-                .zoom(0.0047)
-                .focus(-0.75, 0.0)
-                .maxIterations(250)
+        IFractalGenerator mandelbrotImage = new FractalGeneratorBuilder()
+                .dimensions(600, 800)
                 .sequence(ComplexSequenceType.MANDELBROT)
                 .palette(ColorPaletteType.GRADIENT_BLUE_BLACK)
-                .outputPath("mandelbrot_builder.png")
+                .focus(-0.75, 0.0)
+                .scale(0.001)
+                .maxIterations(250)
+                .outputPath("mandelbrot_statique.png")
                 .build();
 
-        generator2.generateImage();
-        generator2.saveImage();
+        mandelbrotImage.saveImage();
 
-        FractalGenerator generator3 = new FractalGeneratorBuilder()
+        IFractalGenerator juliaImage = new FractalGeneratorBuilder()
                 .dimensions(800, 800)
-                .zoom(0.0001)
-                .focus(-1.755, -0.03)
-                .maxIterations(64)
+                .sequence(ComplexSequenceType.JULIA)
+                .palette(ColorPaletteType.GRADIENT_YELLOW_RED)
+                .focus(0.1, 0.6)
+                .scale(0.001)
+                .maxIterations(250)
+                .outputPath("julia_statique.png")
+                .build();
+
+        juliaImage.saveImage();
+
+        IFractalGenerator burningShipImage = new FractalGeneratorBuilder()
+                .dimensions(800, 800)
                 .sequence(ComplexSequenceType.BURNING_SHIP)
                 .palette(ColorPaletteType.GRADIENT_BLACK_YELLOW)
-                .outputPath("burningship_builder.png")
+                .focus(-1.755, -0.03)
+                .scale(0.0001)
+                .maxIterations(64)
+                .outputPath("burningship_statique.png")
                 .build();
 
-        generator3.generateImage();
-        generator3.saveImage();
+        burningShipImage.saveImage();
 
+        IFractalGenerator mandelbrotZoom = new FractalGeneratorBuilder()
+                .dimensions(400, 400)
+                .sequence(ComplexSequenceType.MANDELBROT)
+                .palette(ColorPaletteType.GRADIENT_BLUE_BLACK)
+                .focus(-0.743643887037151, 0.131825904205330)
+                .scale(0.005)
+                .maxIterations(200)
+                .zoomAnimation(30, 0.85, 80)
+                .outputPath("mandelbrot_zoom.gif")
+                .build();
+
+        mandelbrotZoom.saveImage();
+
+        IFractalGenerator juliaRotation = new FractalGeneratorBuilder()
+                .dimensions(400, 400)
+                .sequence(ComplexSequenceType.JULIA)
+                .palette(ColorPaletteType.GRADIENT_YELLOW_RED)
+                .focus(0.0, 0.0)
+                .scale(0.004)
+                .maxIterations(150)
+                .rotationAnimation(30, new Complex(0.7885, 0.0), 80)
+                .outputPath("julia_rotation.gif")
+                .build();
+
+        juliaRotation.saveImage();
     }
 }
