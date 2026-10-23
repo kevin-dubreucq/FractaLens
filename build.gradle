@@ -52,3 +52,4 @@ sonar {
         property("sonar.projectKey", "fractalens_dream_team")
     }
 }
+
