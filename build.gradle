@@ -17,6 +17,10 @@ java {
     }
 }
 
+application {
+    mainClass = 'fr.univartois.butinfo.fractalens.FractalCli'
+}
+
 // The repositories from which dependencies should be downloaded.
 repositories {
     mavenCentral()
