@@ -2,6 +2,9 @@ package fr.univartois.butinfo.fractalens.color;
 
 import java.awt.*;
 
+/**
+ * A {@code GradientPalette} is a color palette that generates colors using a gradient between two colors.
+ */
 public class GradientPalette implements IColorPalette{
 
     private Color color1;
