@@ -95,7 +95,7 @@ public class FractalGenerator implements IFractalGenerator {
 
         // Iterate over the sequence to count the number of iterations.
         int iterations = 0;
-        for (IComplex term : sequence) {
+        for (var _ : sequence) {
             iterations++;
         }
 
@@ -117,7 +117,7 @@ public class FractalGenerator implements IFractalGenerator {
         try {
             generatedImage.saveAs(outputPath);
         } catch (IOException e) {
-            System.err.println("Error while saving the fractal image: " + e.getMessage());
+            throw new IllegalArgumentException("Error while saving the fractal image: " + e.getMessage());
         }
     }
 }
