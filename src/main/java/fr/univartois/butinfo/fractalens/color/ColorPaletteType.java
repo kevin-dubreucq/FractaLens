@@ -38,11 +38,22 @@ public enum ColorPaletteType {
      */
     INVERTED_GRAYSCALE(new InvertedColorPalette(new GrayscalePalette())),
 
+
+    GRADIENT_YELLOW_BLUE(new GradientPalette(Color.YELLOW, Color.BLUE)),
     /**
      * Fixed or custom color palette.
      */
-    FIXED(new FixedColorPalette());
+    FIXED(new FixedColorPalette()),
 
+    FIXED2(new FixedColorPalette2()),
+
+    FIXED3(new FixedColorPalette3()),
+
+    FIXED4(new FixedColorPalette4()),
+
+    FIXED5(new FixedColorPalette5()),
+
+    FIXED6(new FixedColorPalette6());
     /**
      * The concrete instance of the color palette associated with this type.
      */

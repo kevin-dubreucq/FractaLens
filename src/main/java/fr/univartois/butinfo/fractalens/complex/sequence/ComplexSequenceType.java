@@ -55,6 +55,9 @@ public enum ComplexSequenceType {
      */
     TRICORN((z0, maxIter) -> ComplexSequence.createTricorn(z0, maxIter, new Complex(-0.4, 0.6))),
 
+
+    AETHERHELIX((z0, maxIter) -> new AetherHelixSequence(z0, maxIter)),
+
     /**
      * Creates a new generic custom sequence.
      *
